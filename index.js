@@ -1,8 +1,103 @@
-/**
- * Minified by jsDelivr using Terser v5.37.0.
- * Original file: /gh/kasuie/alist-customize@main/v3/js/index.js
- *
- * Do NOT use SRI with dynamically generated files! More information: https://www.jsdelivr.com/using-sri-with-dynamic-files
+/*
+ * @Author: kasuie
+ * @Date: 2024-04-24 15:35:59
+ * @LastEditors: kasuie
+ * @LastEditTime: 2024-11-05 09:38:54
+ * @Description:
  */
-let footer=!1;const footerStyle="\n  .footer {\n    padding-bottom: 10px;\n    padding-top: 10px;\n    display: flex !important;\n  }\n  .mio-footer-main {\n    font-size: 14px;\n    transition: all 0.3s ease-in-out;\n  }\n  .mio-footer-main > img {\n    width: 18px !important;\n    height: 18px !important;\n    border-radius: 50%;\n  }\n\n  .mio-footer-main > a:hover {\n    text-decoration: underline;\n  }\n\n  .markdown-body li>p {\n    font-size: 14px;\n    margin-top: 10px;\n    margin-bottom: 0px;\n  }\n",onPatchStyle=e=>{const t=document.createElement("style");t.textContent=e;(document.head||document.getElementsByTagName("head")[0]).appendChild(t)},onCreateElement=(e,t)=>{const n=document.createElement(e);if(t&&"object"==typeof t)for(const e in t)Object.hasOwnProperty.call(t,e)&&t[e]&&n.setAttribute(e,t[e]);return n},renderFooter=e=>{const t=document.querySelector(".footer > div");if(t){if(onPatchStyle(footerStyle),t.innerHTML="",t.classList.add("mio-footer-main"),e?.length)for(let n=0;n<e.length;n++){const{url:o,text:r,icon:i,target:a}=e[n],l=onCreateElement("a",{target:a||null,href:o}),d=i?onCreateElement("img",{src:`https://api.remio.cc/icon/${new URL(o).host}.ico`}):null;if(l&&(l.innerText=r),n){const e=onCreateElement("span",null);e.innerText="|",e&&t.appendChild(e)}d&&t.appendChild(d),l&&t.appendChild(l)}footer=!0}},init=()=>{if(document.querySelector("#footer-data")){let e=JSON.parse(document.querySelector("#footer-data").innerText),t=0;const n=setInterval((()=>{(footer||t>10)&&clearInterval(n),++t,renderFooter(e)}),300)}};init();
-//# sourceMappingURL=/sm/165a87c5089fec54dcc7a78bb4fecfc8133109fcf75d14c0668947c8c8c9ef08.map
+let footer = false;
+
+const footerStyle = `
+  .footer {
+    padding-bottom: 10px;
+    padding-top: 10px;
+    display: flex !important;
+  }
+  .mio-footer-main {
+    font-size: 14px;
+    transition: all 0.3s ease-in-out;
+  }
+  .mio-footer-main > img {
+    width: 18px !important;
+    height: 18px !important;
+    border-radius: 50%;
+  }
+
+  .mio-footer-main > a:hover {
+    text-decoration: underline;
+  }
+
+  .markdown-body li>p {
+    font-size: 14px;
+    margin-top: 10px;
+    margin-bottom: 0px;
+  }
+`;
+const onPatchStyle = (style) => {
+  const styleElement = document.createElement("style");
+  styleElement.textContent = style;
+  const head = document.head || document.getElementsByTagName("head")[0];
+  head.appendChild(styleElement);
+};
+
+const onCreateElement = (tag, attrs) => {
+  const dom = document.createElement(tag);
+  if (attrs && typeof attrs == "object") {
+    for (const key in attrs) {
+      if (Object.hasOwnProperty.call(attrs, key) && attrs[key]) {
+        dom.setAttribute(key, attrs[key]);
+      }
+    }
+  }
+  return dom;
+};
+
+const renderFooter = (data) => {
+  const target = document.querySelector(".footer > div");
+  if (target) {
+    onPatchStyle(footerStyle);
+    target.innerHTML = "";
+    target.classList.add("mio-footer-main");
+    if (data?.length) {
+      for (let index = 0; index < data.length; index++) {
+        const { url: href, text, icon, target: aTarget } = data[index];
+        const aDom = onCreateElement("a", { target: aTarget || null, href });
+        const ImgDom = icon
+          ? onCreateElement("img", {
+              src: `https://api.remio.cc/icon/${new URL(href).host}.ico`,
+            })
+          : null;
+        aDom && (aDom.innerText = text);
+        if (index) {
+          const split = onCreateElement("span", null);
+          split.innerText = "|";
+          split && target.appendChild(split);
+        }
+        ImgDom && target.appendChild(ImgDom);
+        aDom && target.appendChild(aDom);
+      }
+    }
+    footer = true;
+  }
+};
+
+const init = () => {
+  const footerDataDom = document.querySelector("#footer-data");
+  if (footerDataDom) {
+    let footerData = JSON.parse(
+      document.querySelector("#footer-data").innerText
+    );
+    let count = 0;
+    const interval = setInterval(() => {
+      if (footer || count > 10) clearInterval(interval);
+      ++count;
+      renderFooter(footerData);
+    }, 300);
+  }
+  // const navHome = document.querySelector(".hope-c-PJLV-ibMsOCJ-css");
+  // if (navHome) {
+  //   navHome.innerHTML = "✨";
+  // }
+};
+
+init();
