@@ -24,7 +24,19 @@
     --hope-colors-info5: rgba(var(--mio-primary50), 0.4);
     --hope-colors-info11: rgba(var(--mio-primary50), 1);
   }
+  .hope-ui-dark {
+    --mio-main: 0, 0, 0;
+    --mio-primary: 0, 89, 143;
+    --mio-text: 255, 255, 255;
+    --mio-main-opacity: 0.3;
+    --hope-colors-info9: rgba(var(--mio-primary), 1);
+    --hope-colors-info4: rgba(var(--mio-primary), 0.4);
+    --hope-colors-info5: rgba(var(--mio-primary50), 0.4);
+    --hope-colors-info11: rgba(var(--mio-primary50), 1);
+  }
 }
+
+
 
 @font-face {
   font-family: "Yozai";
