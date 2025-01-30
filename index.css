@@ -24,7 +24,7 @@
     --hope-colors-info5: rgba(var(--mio-primary50), 0.4);
     --hope-colors-info11: rgba(var(--mio-primary50), 1);
   }
-  .hope-ui-dark {
+  .hope-ui-light {
     --mio-main: 0, 0, 0;
     --mio-primary: 0, 89, 143;
     --mio-text: 255, 255, 255;
@@ -40,7 +40,7 @@
 
 @font-face {
   font-family: "Yozai";
-  src: url("../font/Yozai-Regular.ttf") format("truetype");
+  src: url("https://cdn.jsdelivr.net/gh/kasuie/alist-customize/main/v3/font/Yozai-Regular.ttf") format("truetype");
 }
 
 @font-face {
